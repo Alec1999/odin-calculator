@@ -1,3 +1,4 @@
+const calculatorBody = document.getElementById("calculator-body");
 let firstDigit = 3;
 let operator = "+";
 let secondDigit = 4;
