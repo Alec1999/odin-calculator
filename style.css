@@ -17,6 +17,11 @@
 #equals-btn {
     background-color: rgb(45, 45, 252);
     color: white;
+    height: 163px;
+}
+
+#plus-btn {
+    height: 163px;
 }
 
 .num-btn {
@@ -25,6 +30,10 @@
 
 .op-btn {
     background-color: lightblue;
+}
+
+table {
+    height: 400px;
 }
 
 button {
