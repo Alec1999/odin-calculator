@@ -46,7 +46,9 @@ function populateDisplay(currentNumber) {
 arrayOfNumBtns.forEach((button) => {
     button.addEventListener("click", (e) => {
         currentDigit = button.textContent;
-        currentNumber += currentDigit
+        if (currentNumber.length < 14) {
+            currentNumber += currentDigit;
+        }
         populateDisplay(currentNumber);
     })
 }); 
