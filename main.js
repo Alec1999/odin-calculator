@@ -1,7 +1,7 @@
 const calculator = document.getElementById("calculator-body");
-const button = document.getElementsByTagName("button");
+const numButton = document.getElementsByClassName("num-btn");
 const display = document.getElementById("calculator-result");
-let arrayOfBtns = Array.from(button);
+let arrayOfNumBtns = Array.from(numButton);
 let currentDigit = "";
 let currentNumber = ""
 let firstDigit = 3;
@@ -43,7 +43,7 @@ function populateDisplay(currentNumber) {
     display.innerText = currentNumber;    
 }
 
-arrayOfBtns.forEach((button) => {
+arrayOfNumBtns.forEach((button) => {
     button.addEventListener("click", (e) => {
         currentDigit = button.textContent;
         currentNumber += currentDigit
