@@ -1,9 +1,11 @@
+const button = document.getElementsByTagName("button");
 const calculator = document.getElementById("calculator-body");
 const numButton = document.getElementsByClassName("num-btn");
+const opButton = document.getElementsByClassName("op-btn");
 const display = document.getElementById("calculator-result");
-let arrayOfNumBtns = Array.from(numButton);
+let arrayOfBtns = Array.from(button);
 let currentDigit = "";
-let currentNumber = ""
+let currentNumber = "";
 let firstDigit = 3;
 let operator = "+";
 let secondDigit = 4;
@@ -43,12 +45,15 @@ function populateDisplay(currentNumber) {
     display.innerText = currentNumber;    
 }
 
-arrayOfNumBtns.forEach((button) => {
+arrayOfBtns.forEach((button) => {
     button.addEventListener("click", (e) => {
-        currentDigit = button.textContent;
-        if (currentNumber.length < 14) {
+        if (button.classList.contains("num-btn")) {
+            currentDigit = button.innerText;
+            if (currentNumber.length < 14) {
             currentNumber += currentDigit;
-        }
-        populateDisplay(currentNumber);
+            populateDisplay(currentNumber);
+            };
+        };  
     })
 }); 
+
