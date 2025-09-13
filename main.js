@@ -1,4 +1,9 @@
-const calculatorBody = document.getElementById("calculator-body");
+const calculator = document.getElementById("calculator-body");
+const button = document.getElementsByTagName("button");
+const display = document.getElementById("calculator-result");
+let arrayOfBtns = Array.from(button);
+let currentDigit = "";
+let currentNumber = ""
 let firstDigit = 3;
 let operator = "+";
 let secondDigit = 4;
@@ -19,7 +24,7 @@ function divide(num1, num2) {
     return (num1 / num2);
 };
 
-function oporate(firstDigit, operator, secondDigit) {
+function operate(firstDigit, operator, secondDigit) {
     if (operator == "+") {
         return add(firstDigit, secondDigit);
     }
@@ -33,3 +38,15 @@ function oporate(firstDigit, operator, secondDigit) {
         return divide(firstDigit, secondDigit);
     };
 };
+
+function populateDisplay(currentNumber) {
+    display.innerText = currentNumber;    
+}
+
+arrayOfBtns.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        currentDigit = button.textContent;
+        currentNumber += currentDigit
+        populateDisplay(currentNumber);
+    })
+}); 
