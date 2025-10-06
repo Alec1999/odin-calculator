@@ -1,14 +1,14 @@
 const button = document.getElementsByTagName("button");
 const calculator = document.getElementById("calculator-body");
+const display = document.getElementById("calculator-result");
 const numButton = document.getElementsByClassName("num-btn");
 const opButton = document.getElementsByClassName("op-btn");
-const display = document.getElementById("calculator-result");
 let arrayOfBtns = Array.from(button);
 let currentDigit = "";
 let currentNumber = "";
-let firstDigit = 3;
-let operator = "+";
-let secondDigit = 4;
+let firstNumber = "";
+let operator = "";
+let secondNumber = "";
 
 function add(num1, num2) {
     return (num1 + num2);
@@ -26,18 +26,18 @@ function divide(num1, num2) {
     return (num1 / num2);
 };
 
-function operate(firstDigit, operator, secondDigit) {
+function operate(firstNumber, operator, secondNumber) {
     if (operator == "+") {
-        return add(firstDigit, secondDigit);
+        return add(firstNumber, secondNumber);
     }
     else if (operator == "-") {
-        return subtract(firstDigit, secondDigit);
+        return subtract(firstNumber, secondNumber);
     }
     else if (operator == "*") {
-        return multiply(firstDigit, secondDigit);
+        return multiply(firstNumber, secondNumber);
     }
     else if (operator == "/") {
-        return divide(firstDigit, secondDigit);
+        return divide(firstNumber, secondNumber);
     };
 };
 
@@ -54,6 +54,29 @@ arrayOfBtns.forEach((button) => {
             populateDisplay(currentNumber);
             };
         };  
+        if (button.classList.contains("op-btn")){
+            if (button.innerText != "=") {
+                operator = button.innerText;
+            }
+            if (firstNumber == "") {
+                firstNumber = currentNumber;
+                currentNumber = ""
+            } 
+            else {
+                secondNumber = currentNumber;
+            }
+            if (firstNumber && secondNumber) {
+                    console.log("first number is " + firstNumber);
+                    console.log("second number is " + secondNumber);
+                    console.log("current operator is " + operator);
+                let answer = operate(firstNumber, operator, secondNumber)
+                console.log("answer = " + answer)
+                if (operator == "=") {
+                    populateDisplay(answer);
+                }
+            }
+
+        }
     })
 }); 
 
