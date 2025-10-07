@@ -69,6 +69,12 @@ arrayOfBtns.forEach((button) => {
                 populateDisplay(answer);
             }
         };
+        if (button.id === "clear-btn") {
+            firstNumber = "";
+            secondNumber = "";
+            currentNumber = "";
+            populateDisplay("");
+        };
         console.log("first number is " + firstNumber);
         console.log("second number is " + secondNumber);
         console.log("current operator is " + operator);

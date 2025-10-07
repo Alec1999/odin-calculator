@@ -33,7 +33,7 @@
     background-color: lightgray;
 }
 
-.op-btn {
+#clear-btn, .op-btn {
     background-color: lightblue;
 }
 
