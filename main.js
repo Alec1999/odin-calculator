@@ -55,28 +55,21 @@ arrayOfBtns.forEach((button) => {
             };
         };  
         if (button.classList.contains("op-btn")){
-            if (button.innerText != "=") {
-                operator = button.innerText;
-            }
+            operator = button.innerText;
             if (firstNumber == "") {
                 firstNumber = currentNumber;
                 currentNumber = ""
-            } 
-            else {
-                secondNumber = currentNumber;
-            }
-            if (firstNumber && secondNumber) {
-                    console.log("first number is " + firstNumber);
-                    console.log("second number is " + secondNumber);
-                    console.log("current operator is " + operator);
-                let answer = operate(firstNumber, operator, secondNumber)
-                console.log("answer = " + answer)
-                if (operator == "=") {
-                    populateDisplay(answer);
-                }
-            }
-
-        }
+            };
+        };
+        if (button.id === "equals-btn") {
+            secondNumber = currentNumber;
+            let answer = operate(firstNumber, operator, secondNumber)
+            console.log("answer = " + answer)
+            populateDisplay(answer);
+        };
+        console.log("first number is " + firstNumber);
+        console.log("second number is " + secondNumber);
+        console.log("current operator is " + operator);
     })
 }); 
 
