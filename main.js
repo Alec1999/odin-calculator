@@ -9,6 +9,7 @@ let currentNumber = "";
 let firstNumber = "";
 let operator = "";
 let secondNumber = "";
+let opLastPressed = false;
 
 function add(num1, num2) {
     return (Number(num1) + Number(num2));
@@ -48,6 +49,10 @@ function populateDisplay(currentNumber) {
 arrayOfBtns.forEach((button) => {
     button.addEventListener("click", (e) => {
         if (button.classList.contains("num-btn")) {
+            if (opLastPressed == true) {
+                currentNumber = "";
+                opLastPressed = false;
+            }
             currentDigit = button.innerText;
             if (currentNumber.length < 14) {
             currentNumber += currentDigit;
@@ -55,19 +60,28 @@ arrayOfBtns.forEach((button) => {
             };
         };  
         if (button.classList.contains("op-btn")){
-            operator = button.innerText;
+            opLastPressed = true;
+            if (button.id != "equals-btn"){
+                operator = button.innerText;
+            }
             if (firstNumber == "") {
                 firstNumber = currentNumber;
                 currentNumber = ""
             };
-        };
-        if (button.id === "equals-btn") {
-            secondNumber = currentNumber;
+            if (firstNumber) {
+                secondNumber = currentNumber;
+                currentNumber = "";
+            }
             if (firstNumber && secondNumber) {
                 let answer = operate(firstNumber, operator, secondNumber)
                 console.log("answer = " + answer)
                 populateDisplay(answer);
+                firstNumber = answer;
+                secondNumber = "";
             }
+            console.log("first number is " + firstNumber);
+            console.log("second number is " + secondNumber);
+            console.log("current operator is " + operator);
         };
         if (button.id === "clear-btn") {
             firstNumber = "";
@@ -75,9 +89,5 @@ arrayOfBtns.forEach((button) => {
             currentNumber = "";
             populateDisplay("");
         };
-        console.log("first number is " + firstNumber);
-        console.log("second number is " + secondNumber);
-        console.log("current operator is " + operator);
     })
 }); 
-
