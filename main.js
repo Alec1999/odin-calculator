@@ -61,9 +61,6 @@ arrayOfBtns.forEach((button) => {
         };  
         if (button.classList.contains("op-btn")){
             opLastPressed = true;
-            if (button.id != "equals-btn"){
-                operator = button.innerText;
-            }
             if (firstNumber == "") {
                 firstNumber = currentNumber;
                 currentNumber = ""
@@ -78,7 +75,10 @@ arrayOfBtns.forEach((button) => {
                 populateDisplay(answer);
                 firstNumber = answer;
                 secondNumber = "";
-            }
+            };
+            if (button.id != "equals-btn"){
+                operator = button.innerText;
+            };
             console.log("first number is " + firstNumber);
             console.log("second number is " + secondNumber);
             console.log("current operator is " + operator);
