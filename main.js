@@ -72,6 +72,10 @@ arrayOfBtns.forEach((button) => {
             if (firstNumber && secondNumber) {
                 let answer = operate(firstNumber, operator, secondNumber)
                 console.log("answer = " + answer)
+                console.log(answer.toString());
+                if (answer.toString().length > 14) {
+                    answer = "Undefined";
+                }; 
                 populateDisplay(answer);
                 firstNumber = answer;
                 secondNumber = "";
