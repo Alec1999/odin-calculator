@@ -6,11 +6,11 @@ const opButton = document.getElementsByClassName("op-btn");
 let arrayOfBtns = Array.from(button);
 let currentDigit = "";
 let currentNumber = "";
+let divideByZero = false;
 let firstNumber = "";
 let operator = "";
-let secondNumber = "";
 let opLastPressed = false;
-let divideByZero = false;
+let secondNumber = "";
 
 function add(num1, num2) {
     return (Number(num1) + Number(num2));
@@ -45,7 +45,7 @@ function operate(firstNumber, operator, secondNumber) {
 
 function populateDisplay(currentNumber) {
     display.innerText = currentNumber;    
-}
+};
 
 function clearAll() {
     firstNumber = "";
@@ -53,7 +53,7 @@ function clearAll() {
     currentNumber = "";
     populateDisplay("");
     divideByZero = false;
-}
+};
 
 arrayOfBtns.forEach((button) => {
     button.addEventListener("click", (e) => {
@@ -62,7 +62,7 @@ arrayOfBtns.forEach((button) => {
             if (opLastPressed == true) {
                 currentNumber = "";
                 opLastPressed = false;
-            }
+            };
 
             currentDigit = button.innerText;
             if (currentDigit == 0 && operator == "÷") {
@@ -79,7 +79,7 @@ arrayOfBtns.forEach((button) => {
 
             if (firstNumber == "") {
                 firstNumber = currentNumber;
-                currentNumber = ""
+                currentNumber = "";
             }
             else {
                 secondNumber = currentNumber;
@@ -106,14 +106,10 @@ arrayOfBtns.forEach((button) => {
                 if (divideByZero == true)
                 populateDisplay("Can't ÷ by 0!");
             };
-
-            console.log("first number is " + firstNumber);
-            console.log("second number is " + secondNumber);
-            console.log("current operator is " + operator);
         };
 
         if (button.id === "clear-btn") {
             clearAll();
         };
-    })
+    });
 }); 

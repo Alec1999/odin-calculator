@@ -15,8 +15,9 @@
     font-size: 45px;
 }
 
-#zero-btn {
-    width: 100%;
+#decimal-btn {
+    font-size: 1.2em;
+    font-weight: bold;
 }
 
 #equals-btn {
@@ -29,12 +30,16 @@
     height: 163px;
 }
 
-.num-btn {
-    background-color: lightgray;
+#zero-btn {
+    width: 100%;
 }
 
 #clear-btn, .op-btn {
     background-color: lightblue;
+}
+
+.num-btn {
+    background-color: lightgray;
 }
 
 table {
