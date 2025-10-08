@@ -10,6 +10,7 @@ let firstNumber = "";
 let operator = "";
 let secondNumber = "";
 let opLastPressed = false;
+let divideByZero = false;
 
 function add(num1, num2) {
     return (Number(num1) + Number(num2));
@@ -46,6 +47,14 @@ function populateDisplay(currentNumber) {
     display.innerText = currentNumber;    
 }
 
+function clearAll() {
+    firstNumber = "";
+    secondNumber = "";
+    currentNumber = "";
+    populateDisplay("");
+    divideByZero = false;
+}
+
 arrayOfBtns.forEach((button) => {
     button.addEventListener("click", (e) => {
         if (button.classList.contains("num-btn")) {
@@ -56,8 +65,10 @@ arrayOfBtns.forEach((button) => {
             }
 
             currentDigit = button.innerText;
-
-            if (currentNumber.length < 14) {
+            if (currentDigit == 0 && operator == "÷") {
+                divideByZero = true;
+            }
+            else if (currentNumber.length < 14) {
                 currentNumber += currentDigit;
                 populateDisplay(currentNumber);
             };
@@ -78,7 +89,7 @@ arrayOfBtns.forEach((button) => {
             if (firstNumber && secondNumber) {
                 let answer = operate(firstNumber, operator, secondNumber);
                 console.log("answer = " + answer);
-                
+
                 if (answer.toString().length > 14) {
                     answer = "Undefined";
                 }; 
@@ -90,6 +101,10 @@ arrayOfBtns.forEach((button) => {
 
             if (button.id != "equals-btn"){
                 operator = button.innerText;
+            }
+            else {
+                if (divideByZero == true)
+                populateDisplay("Can't ÷ by 0!");
             };
 
             console.log("first number is " + firstNumber);
@@ -98,10 +113,7 @@ arrayOfBtns.forEach((button) => {
         };
 
         if (button.id === "clear-btn") {
-            firstNumber = "";
-            secondNumber = "";
-            currentNumber = "";
-            populateDisplay("");
+            clearAll();
         };
     })
 }); 
