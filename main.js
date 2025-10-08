@@ -6,6 +6,7 @@ const opButton = document.getElementsByClassName("op-btn");
 let arrayOfBtns = Array.from(button);
 let currentDigit = "";
 let currentNumber = "";
+let disableDecimal = false;
 let divideByZero = false;
 let firstNumber = "";
 let operator = "";
@@ -48,23 +49,50 @@ function populateDisplay(currentNumber) {
 };
 
 function clearAll() {
-    firstNumber = "";
-    secondNumber = "";
     currentNumber = "";
-    populateDisplay("");
     divideByZero = false;
+    disableDecimal = false;
+    firstNumber = "";
+    populateDisplay("");
+    secondNumber = ""; 
 };
 
 arrayOfBtns.forEach((button) => {
     button.addEventListener("click", (e) => {
         if (button.classList.contains("num-btn")) {
 
+            console.log("disableDecimal = " + disableDecimal);
+            console.log("current digit is " + currentDigit);
+
+            if (display.innerText.includes(".")) {
+                disableDecimal = true;
+            }
+            else {
+                disableDecimal = false;
+            };
+
+            if (disableDecimal == true) {
+                if (button.id != "decimal-btn") {
+                    currentDigit = button.innerText;
+                }
+            }
+            else {
+                currentDigit = button.innerText;
+            };
+
+            if (disableDecimal == true && currentDigit == ".") {
+                currentDigit ="";
+            }
+
+
+            // Add current number to display,
+            // But only if it is not a second decimal.
+            
             if (opLastPressed == true) {
                 currentNumber = "";
                 opLastPressed = false;
             };
 
-            currentDigit = button.innerText;
             if (currentDigit == 0 && operator == "÷") {
                 divideByZero = true;
             }

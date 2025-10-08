@@ -42,11 +42,11 @@
     background-color: lightgray;
 }
 
-table {
-    height: 400px;
-}
-
 button {
     width: 80px;
     height: 80px;
+}
+
+table {
+    height: 400px;
 }
