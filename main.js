@@ -51,7 +51,6 @@ function populateDisplay(currentNumber) {
 function clearAll() {
     currentNumber = "";
     divideByZero = false;
-    disableDecimal = false;
     firstNumber = "";
     populateDisplay("");
     secondNumber = ""; 
