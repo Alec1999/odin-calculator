@@ -61,9 +61,6 @@ arrayOfBtns.forEach((button) => {
     button.addEventListener("click", (e) => {
         if (button.classList.contains("num-btn")) {
 
-            console.log("disableDecimal = " + disableDecimal);
-            console.log("current digit is " + currentDigit);
-
             if (display.innerText.includes(".")) {
                 disableDecimal = true;
             }
@@ -75,25 +72,24 @@ arrayOfBtns.forEach((button) => {
                 if (button.id != "decimal-btn") {
                     currentDigit = button.innerText;
                 }
+                else {
+                    currentDigit = "";
+                }
             }
             else {
                 currentDigit = button.innerText;
             };
 
             if (disableDecimal == true && currentDigit == ".") {
-                currentDigit ="";
-            }
-
-
-            // Add current number to display,
-            // But only if it is not a second decimal.
+                currentDigit = "";
+            };
             
             if (opLastPressed == true) {
                 currentNumber = "";
                 opLastPressed = false;
             };
 
-            if (currentDigit == 0 && operator == "÷") {
+            if (currentDigit == false && operator == "÷") {
                 divideByZero = true;
             }
             else if (currentNumber.length < 14) {
