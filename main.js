@@ -142,8 +142,7 @@ arrayOfBtns.forEach((button) => {
 }); 
 
 addEventListener("keydown", (event) => {
-    currentDigit = (event.key);
-    updateDisplay();
-    console.log(event.key);
-    console.log("currentDigit = " + currentDigit);
+    if (/^[0-9]$/.test(event.key))
+        currentDigit = (event.key);
+        updateDisplay();
 });
