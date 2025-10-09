@@ -48,6 +48,16 @@ function populateDisplay(currentNumber) {
     display.innerText = currentNumber;    
 };
 
+function updateDisplay () {
+    if (currentDigit == false && operator == "÷") {
+        divideByZero = true;
+    }
+    else if (currentNumber.length < 14) {
+        currentNumber += currentDigit;
+        populateDisplay(currentNumber);
+    };
+}
+
 function clearAll() {
     currentNumber = "";
     divideByZero = false;
@@ -67,16 +77,16 @@ arrayOfBtns.forEach((button) => {
                 disableDecimal = false;
             };
 
-            if (disableDecimal == true) {
+            if (disableDecimal == false) {
+                currentDigit = button.innerText;
+            }
+            else {
                 if (button.id != "decimal-btn") {
                     currentDigit = button.innerText;
                 }
                 else {
                     currentDigit = "";
-                }
-            }
-            else {
-                currentDigit = button.innerText;
+                };
             };
 
             if (disableDecimal == true && currentDigit == ".") {
@@ -88,13 +98,7 @@ arrayOfBtns.forEach((button) => {
                 opLastPressed = false;
             };
 
-            if (currentDigit == false && operator == "÷") {
-                divideByZero = true;
-            }
-            else if (currentNumber.length < 14) {
-                currentNumber += currentDigit;
-                populateDisplay(currentNumber);
-            };
+            updateDisplay();
         };
 
         if (button.classList.contains("op-btn")){
@@ -136,3 +140,10 @@ arrayOfBtns.forEach((button) => {
         };
     });
 }); 
+
+addEventListener("keydown", (event) => {
+    currentDigit = (event.key);
+    updateDisplay();
+    console.log(event.key);
+    console.log("currentDigit = " + currentDigit);
+});
