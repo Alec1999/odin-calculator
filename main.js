@@ -142,14 +142,6 @@ arrayOfBtns.forEach((button) => {
 }); 
 
 addEventListener("keydown", (event) => {
-    // console.log("Divide by zero = " + divideByZero);
-
-    if (event.key == "Enter") {
-        // let answer = operate(firstNumber, operator, secondNumber);
-        // populateDisplay(answer);
-        // firstNumber = answer;
-        // secondNumber = "";
-    }
 
     if (/^[0-9]$/.test(event.key)) {
         currentDigit = (event.key);
@@ -185,10 +177,14 @@ addEventListener("keydown", (event) => {
     else {
         currentDigit = "";
     };
+
+    if (event.key == "Enter") {
+        secondNumber = currentNumber;
+        currentNumber = "";
+        let answer = operate(firstNumber, operator, secondNumber);
+        populateDisplay(answer);
+        firstNumber = answer;
+        secondNumber = "";
+    }
 });
 
-// console.log("CurrentDigit = " + currentDigit);
-//         console.log("operator = " + operator);
-//         console.log("FirstNumber = " + firstNumber);
-//         console.log("SecondNumber = " + secondNumber);
-//         console.log("Divide by zero = " + divideByZero);
