@@ -49,7 +49,7 @@ function populateDisplay(currentNumber) {
 };
 
 function updateDisplay () {
-    if (currentDigit == false && operator == "÷") {
+    if (currentDigit == "0" && operator == "÷") {
         divideByZero = true;
     }
     else if (currentNumber.length < 14) {
@@ -142,11 +142,35 @@ arrayOfBtns.forEach((button) => {
 }); 
 
 addEventListener("keydown", (event) => {
+    console.log("Divide by zero = " + divideByZero);
+
     if (/^[0-9]$/.test(event.key)) {
         currentDigit = (event.key);
         updateDisplay();
     }
+    else if (/^[\/\*\-\+]$/.test(event.key)) {
+        if (event.key == "/") {
+            currentDigit = "";
+            operator = "÷";
+        };
+
+        if (firstNumber == "") {
+            firstNumber = currentNumber;
+            currentNumber = "";
+        }
+        else {
+            secondNumber = currentNumber;
+            currentNumber = "";
+        };
+
+        console.log("CurrentDigit = " + currentDigit);
+        console.log("operator = " + operator);
+        console.log("FirstNumber = " + firstNumber);
+        console.log("SecondNumber = " + secondNumber);
+        console.log("Divide by zero = " + divideByZero);
+        updateDisplay();
+    }
     else {
         currentDigit = "";
-    }
+    };
 });
