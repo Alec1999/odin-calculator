@@ -49,14 +49,14 @@ function populateDisplay(currentNumber) {
 };
 
 function updateDisplay () {
-    if (currentDigit == "0" && operator == "÷") {
+    if (currentNumber == "0" && operator == "÷") {
         divideByZero = true;
     }
     else if (currentNumber.length < 14) {
         currentNumber += currentDigit;
         populateDisplay(currentNumber);
     };
-}
+};
 
 function clearAll() {
     currentNumber = "";
@@ -77,20 +77,11 @@ arrayOfBtns.forEach((button) => {
                 disableDecimal = false;
             };
 
-            if (disableDecimal == false) {
-                currentDigit = button.innerText;
+            if (button.id == "decimal-btn" && disableDecimal == true) {
+                currentDigit = "";
             }
             else {
-                if (button.id != "decimal-btn") {
-                    currentDigit = button.innerText;
-                }
-                else {
-                    currentDigit = "";
-                };
-            };
-
-            if (disableDecimal == true && currentDigit == ".") {
-                currentDigit = "";
+                currentDigit = button.innerText;
             };
             
             if (opLastPressed == true) {
@@ -142,7 +133,6 @@ arrayOfBtns.forEach((button) => {
 }); 
 
 addEventListener("keydown", (event) => {
-
     if (/^[0-9]$/.test(event.key)) {
         currentDigit = (event.key);
         updateDisplay();
@@ -174,11 +164,7 @@ addEventListener("keydown", (event) => {
             currentNumber = "";
         };
     }
-    else {
-        currentDigit = "";
-    };
-
-    if (event.key == "Enter") {
+    else if (event.key == "Enter") {
         secondNumber = currentNumber;
         currentNumber = "";
         let answer = operate(firstNumber, operator, secondNumber);
@@ -186,5 +172,8 @@ addEventListener("keydown", (event) => {
         firstNumber = answer;
         secondNumber = "";
     }
+    else { // If key pressed is anything other than a number or operator, set to blank.
+        currentDigit = "";
+    };
 });
 
