@@ -142,16 +142,35 @@ arrayOfBtns.forEach((button) => {
 }); 
 
 addEventListener("keydown", (event) => {
-    console.log("Divide by zero = " + divideByZero);
+    // console.log("Divide by zero = " + divideByZero);
+
+    if (event.key == "Enter") {
+        // let answer = operate(firstNumber, operator, secondNumber);
+        // populateDisplay(answer);
+        // firstNumber = answer;
+        // secondNumber = "";
+    }
 
     if (/^[0-9]$/.test(event.key)) {
         currentDigit = (event.key);
         updateDisplay();
     }
-    else if (/^[\/\*\-\+]$/.test(event.key)) {
+    else if (/^[\/\*\-\+\n]$/.test(event.key)) {
         if (event.key == "/") {
             currentDigit = "";
             operator = "÷";
+        }
+        else if (event.key == "*") {
+            currentDigit = "";
+            operator = "×";
+        }
+        else if (event.key == "-") {
+            currentDigit = "";
+            operator = "−";
+        }
+        else if (event.key == "+") {
+            currentDigit = "";
+            operator = "+";
         };
 
         if (firstNumber == "") {
@@ -162,15 +181,14 @@ addEventListener("keydown", (event) => {
             secondNumber = currentNumber;
             currentNumber = "";
         };
-
-        console.log("CurrentDigit = " + currentDigit);
-        console.log("operator = " + operator);
-        console.log("FirstNumber = " + firstNumber);
-        console.log("SecondNumber = " + secondNumber);
-        console.log("Divide by zero = " + divideByZero);
-        updateDisplay();
     }
     else {
         currentDigit = "";
     };
 });
+
+// console.log("CurrentDigit = " + currentDigit);
+//         console.log("operator = " + operator);
+//         console.log("FirstNumber = " + firstNumber);
+//         console.log("SecondNumber = " + secondNumber);
+//         console.log("Divide by zero = " + divideByZero);
